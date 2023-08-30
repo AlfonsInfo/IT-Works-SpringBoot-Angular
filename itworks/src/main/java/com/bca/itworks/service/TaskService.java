@@ -64,4 +64,13 @@ public class TaskService {
             throw new IllegalArgumentException(String.format("Task data with id %s not found" , id));
         }
     }
+
+    public Task findById(String id)
+    {
+        Optional<Task> task = taskRepository.findById(UUID.fromString(id));
+        if(task.isPresent()){
+            return task.get();
+        }
+        return null;
+    }
 }

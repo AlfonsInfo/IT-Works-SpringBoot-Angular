@@ -1,0 +1,13 @@
+#Function or query
+type Query{
+    tasks: [Task]
+    task_by_id(id : String): Task
+}
+
+type Task{
+    id : ID!
+    title : String
+    isDone : Boolean
+    createdDate : String
+    modifiedDate : String
+}
