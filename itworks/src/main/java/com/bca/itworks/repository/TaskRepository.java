@@ -1,6 +1,7 @@
 package com.bca.itworks.repository;
 
 import com.bca.itworks.model.Task;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +18,5 @@ public interface TaskRepository extends JpaRepository<Task, String> {
     Optional<Task> findById(UUID id);
 
     List<Task> findAll();
+    List<Task> findAllByOrderByCreatedDateAsc();
 }

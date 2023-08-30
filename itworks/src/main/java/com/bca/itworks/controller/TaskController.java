@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/task")
 @Slf4j
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class TaskController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class TaskController {
         log.info("Getting task list....");
 
         try{
-            List<Task> tasks = taskService.getAll();
+            List<Task> tasks = taskService.getAllOrderingByCreatedDateAsc();
             if(tasks.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -49,7 +49,7 @@ public class TaskController {
                 log.info("To add Item to your list, you must give it a title");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            return new ResponseEntity<>(taskService.addTask(task) , HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(taskService.addTask(task) , HttpStatus.OK);
         }catch (Exception e)
         {
             e.printStackTrace();

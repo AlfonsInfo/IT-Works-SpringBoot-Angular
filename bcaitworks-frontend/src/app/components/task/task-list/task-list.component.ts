@@ -13,9 +13,10 @@ export class TaskListComponent implements OnInit {
     private taskService : TaskService,
     private activatedRoute : ActivatedRoute,
     private toastr : ToastrService
-  ){
-  }
+  ){}
   tasks : any;
+
+  
   ngOnInit(): void {
       this.getTasks();
 
@@ -40,7 +41,21 @@ export class TaskListComponent implements OnInit {
       }
     });
   }
-}
+
+  updateTask = (id :string) => {
+      this.taskService.update(id).subscribe({
+          next : () => {
+            this.toastr.success("Task updated");
+            this.getTasks();
+          },
+          error : (error) => {
+            this.toastr.error("Failed to update task")
+            throw error;
+          }
+      });
+    };
+    }
+
 
 
 

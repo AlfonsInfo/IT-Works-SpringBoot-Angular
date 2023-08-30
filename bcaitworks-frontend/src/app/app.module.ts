@@ -10,13 +10,16 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastrModule} from 'ngx-toastr';
+import { CardComponent } from './components/task/card/card.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TaskListComponent,
-    TaskAddComponent
+    TaskAddComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,9 @@ import { ToastrModule} from 'ngx-toastr';
       positionClass : 'toast-bottom-right'
     }),
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

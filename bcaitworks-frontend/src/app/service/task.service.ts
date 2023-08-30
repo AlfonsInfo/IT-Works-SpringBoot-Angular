@@ -11,7 +11,7 @@ export class TaskService {
   constructor(private httpClient : HttpClient) { }
 
   getAll = () : Observable<any> => {
-    return this.httpClient.get('http://localhost:8080/task',{
+    return this.httpClient.get(`${environment.baseUrl}/task`,{
       responseType : 'json'
     });
 

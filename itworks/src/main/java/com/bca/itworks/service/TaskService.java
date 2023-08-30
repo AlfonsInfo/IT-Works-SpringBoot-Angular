@@ -4,6 +4,7 @@ import com.bca.itworks.model.Task;
 import com.bca.itworks.repository.TaskRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
@@ -18,8 +19,23 @@ public class TaskService {
 
     public List<Task> getAll()
     {
+        Sort sort = Sort.by(Sort.Direction.ASC, "createdDate");
         List<Task> tasks= new ArrayList<>();
         taskRepository.findAll().forEach(tasks::add);
+
+        if(tasks.isEmpty())
+        {
+            log.info("You have no tasks!");
+            return new ArrayList<>();
+        }
+        return tasks;
+    }
+
+    public List<Task> getAllOrderingByCreatedDateAsc()
+    {
+
+        List<Task> tasks= new ArrayList<>();
+        taskRepository.findAllByOrderByCreatedDateAsc().forEach(tasks::add);
 
         if(tasks.isEmpty())
         {

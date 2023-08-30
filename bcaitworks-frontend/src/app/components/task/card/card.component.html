@@ -1,0 +1,40 @@
+<li class="pl-3 pr-4 py-3 flex items-center justify-between text-lg mb-1 border border-gray-300 rounded-md">
+    <div class="flex-1 flex items-center">
+        <p class="text-gray-600" aria-hidden="true">
+            {{ task.title}}
+        </p>
+    </div>
+    <div class="flex-1 flex items-center">
+        <p class="text-gray-600" aria-hidden="true">
+            Created : {{formatDate(task.createdDate)}}
+        </p>
+    </div>
+    <div  class="flex-1 flex items-center">
+        <p *ngIf="task.isDone==true; else noModifiedDate" class="text-gray-600" aria-hidden="true">
+            Done : {{formatDate(task.modifiedDate)}}
+        </p>
+        <ng-template #noModifiedDate>
+            <p class="text-gray-600" aria-hidden="true">
+                Done : -
+            </p>
+        </ng-template>
+    </div>
+    <div class="ml-4 flex-shrink-0">
+        <button
+            (click)="updateTask(task.id)"
+            type="button"
+            class="font-medium text-indigo-600 hover:text-indigo-400"
+            *ngIf="task.isDone"
+        >
+            Done
+        </button>
+        <button
+            (click)="updateTask(task.id)"
+            type="button"
+            class="font-medium text-gray-600 hover:text-gray-500"
+            *ngIf="!task.isDone"
+        >
+            Not Done
+        </button>
+    </div>
+</li>

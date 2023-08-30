@@ -1,0 +1,6 @@
+/* card.component.css */
+ul {
+    list-style: none; /* Menghilangkan bullet marker pada unordered list */
+    padding: 0; /* Menghilangkan padding bawaan pada unordered list */
+    margin: 0; /* Menghilangkan margin bawaan pada unordered list */
+  }

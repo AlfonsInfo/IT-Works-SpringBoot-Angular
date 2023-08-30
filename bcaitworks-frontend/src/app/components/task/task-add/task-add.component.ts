@@ -31,15 +31,18 @@ export class TaskAddComponent implements OnInit {
   addTask(){
     if(this.addForm.invalid){
       this.toastr.error("Task cannot be empty!");
+      return;
     }
 
     this.form.title = this.addForm.get('title')?.value;
+
     this.taskService.add(this.form).subscribe({
-      next: () =>
-        this.router.navigate(["/"],{ queryParams : { save : 'true'}}),
-      error: () => this.toastr.error("Failed to save task! please try again")
-      
-    })
+      next: () => this.router.navigate(["/tasks"], { queryParams: { save: 'true' } }),
+      error: (error) => {
+        console.error('Error while saving:', error);
+        return this.toastr.error("Failed to save task! please try again");
+      } 
+    });
   }
 
 }
