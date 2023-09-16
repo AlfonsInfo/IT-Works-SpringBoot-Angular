@@ -13,8 +13,6 @@ import java.util.UUID;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, String> {
 
-
-    //Bagaimna jika Task findById(UUID id); ?
     Optional<Task> findById(UUID id);
 
     List<Task> findAll();
